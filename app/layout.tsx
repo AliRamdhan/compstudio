@@ -4,6 +4,8 @@ import "./globals.css";
 import { ChakraProvider } from "@chakra-ui/react";
 import Header from "@/laduny/components/Header";
 import Footer from "@/laduny/components/Footer";
+import store from "@/laduny/store";
+import { Provider } from "react-redux";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -19,11 +21,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} bg-black text-white`}>
-        <ChakraProvider>
-          <Header />
-          <main className="w-full min-h-screen">{children}</main>
-          <Footer />
-        </ChakraProvider>
+        <Provider store={store}>
+          <ChakraProvider>
+            <Header />
+            <main className="w-full min-h-screen">{children}</main>
+            <Footer />
+          </ChakraProvider>
+        </Provider>
       </body>
     </html>
   );
