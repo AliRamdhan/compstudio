@@ -1,6 +1,3 @@
-import React, { useState } from "react";
-import { ArrowRightIcon } from "@chakra-ui/icons";
-
 interface CardTrackProps {
   process: number;
   index: number;
@@ -23,9 +20,9 @@ const CardTrack: React.FC<CardTrackProps> = ({
           Date {process}
         </span> */}
       </div>
-      {index < processLength - 1 && ( // Display arrow only for first 3 elements
+      {/* {index < processLength - 1 && ( // Display arrow only for first 3 elements
         <ArrowRightIcon w={12} h={8} color="#fff" />
-      )}
+      )} */}
     </div>
   );
 };

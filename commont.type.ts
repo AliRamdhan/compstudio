@@ -1,3 +1,9 @@
+export interface User {
+  username: string;
+  email: string;
+  role: number;
+}
+
 export interface Product {
   ProductID: number;
   ProductName: string;
@@ -19,19 +25,79 @@ export interface CategoryServiceSelection {
   label: string;
 }
 
+// export interface ServiceForm {
+//   ServiceLaptopName: string;
+//   ServiceLaptopVersion: string;
+//   ServiceComplaint: string;
+//   ServiceDate: string;
+//   ServiceCategory: number;
+//   CustomerUser: number;
+// }
+// interfaces.ts
+
 export interface ServiceForm {
+  serviceID: number;
+  serviceLaptopName: string;
+  serviceLaptopVersion: string;
+  serviceCustonmerName: string;
+  serviceDate: string;
+  serviceEstTime: string;
+  serviceComplaint: string;
+  isCompleteService: string;
+  customerUser: number;
+  serviceCategory: number;
+}
+
+export interface Service {
+  ServiceID: number;
   ServiceLaptopName: string;
   ServiceLaptopVersion: string;
-  ServiceComplaint: string;
+  ServiceCustonmerName: string;
   ServiceDate: string;
-  // ServiceCategory: number;
-  // CustomerUser: number;
+  ServiceEstTime: string;
+  ServiceComplaint: string;
+  IsCompleteService: string;
+  CustomerUser: number;
+  ServiceCategory: number;
+}
+
+export interface CreateServiceRequest {
+  serviceLaptopName: string;
+  serviceLaptopVersion: string;
+  serviceComplaint: string;
+  customerUser: number;
+  serviceCategory: number;
+}
+
+export interface ErrorResponse {
+  error: string;
+}
+
+export interface CreateServiceResponse {
+  message: string;
+  service: Service;
 }
 
 export interface TrackProgress {
   TrackID: number;
   TrackNumber: string;
   TrackStaff: string;
+  TrackDescription: string;
   TrackStatusRefer: number;
   ServiceId: number;
+}
+export interface TrackProgressForm {
+  TrackStatusRefer: number;
+  ServiceId: number;
+  TrackDescription: string;
+  TrackStaff: string;
+}
+
+export interface ServiceForm {
+  ServiceLaptopName: string;
+  ServiceLaptopVersion: string;
+  ServiceComplaint: string;
+  ServiceDate: string;
+  ServiceCategory: number;
+  CustomerUser: number;
 }

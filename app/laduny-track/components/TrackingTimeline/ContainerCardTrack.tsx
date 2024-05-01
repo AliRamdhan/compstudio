@@ -3,6 +3,7 @@ import CardTrack from "./CardTrack";
 
 const ContainerCardTrack = () => {
   const process = [1, 2, 3, 4];
+  //TRACK STATUS
   return (
     <section className="w-full grid grid-cols-1 lg:grid-cols-4">
       {process.map((proces, index) => (

@@ -20,13 +20,18 @@ const Page = () => {
       );
 
       if (response) {
-        if (response.data.token) {
+        console.log(response);
+        const token = response.data.token;
+        const user = response.data.user;
+        if (token) {
           alert("succes login");
-          localStorage.setItem(
-            "secretkey",
-            JSON.stringify(response.data.token)
-          );
-          router.push("/laduny-dashboard");
+          localStorage.setItem("secretkey", JSON.stringify(token));
+          if (user.roleuser === 1) {
+            router.push("/laduny-admin");
+          }
+          if (user.roleuser === 2) {
+            router.push("/laduny-dashboard");
+          }
         } else {
           throw new Error("No token received");
         }

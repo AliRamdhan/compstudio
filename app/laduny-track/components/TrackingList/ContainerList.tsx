@@ -1,5 +1,5 @@
 import React from "react";
-import { TrackProgress } from "../../../../commont.type";
+import { TrackProgress } from "@/laduny/commont.type";
 
 const ContainerList = ({ tracks }: { tracks: TrackProgress[] }) => {
   return (
