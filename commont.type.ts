@@ -101,3 +101,15 @@ export interface ServiceForm {
   ServiceCategory: number;
   CustomerUser: number;
 }
+
+export interface Message {
+  MessageId: number;
+  MessageContent: string;
+  MessageISRead:  boolean;
+  MessageService: number;
+}
+
+export interface MessageForm {
+  MessageService: number;
+  MessageContent: string;
+}

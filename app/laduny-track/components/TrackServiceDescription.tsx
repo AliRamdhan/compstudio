@@ -8,7 +8,7 @@ const TrackServiceDescription = ({
   tracks: TrackProgress[];
   service: Service;
 }) => {
-    console.log(service)
+    // console.log(service)
   return (
     <section className="w-full text-center flex flex-col justify-center items-center bg-gray-50 text-gray-800 py-3 rounded-lg">
       <p className="text-lg font-medium">

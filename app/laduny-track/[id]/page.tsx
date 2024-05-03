@@ -2,7 +2,7 @@ import React from "react";
 import dynamic from "next/dynamic";
 import { GetTrackSpesific } from "@/laduny/api/Track/route";
 import { GetServiceById } from "@/laduny/helpers/api-service";
-
+import ChatText from "../components/ChatText";
 const TrackServiceDescription = dynamic(
   () => import("../components/TrackServiceDescription"),
   {
@@ -28,13 +28,18 @@ const Page = async ({ params }: { params: { id: string } }) => {
   // console.log("asa", serviceId);
   const service = await GetServiceById(serviceId);
   return (
-    <section className="w-full min-h-screen py-16 px-12">
-      <TrackServiceDescription tracks={tracks} service={service} />
-      <section className="mt-8">
-        <ContainerCardTrack />
+    <>
+      <section className="w-full min-h-screen py-16 px-12">
+        <TrackServiceDescription tracks={tracks} service={service} />
+        <section className="mt-8">
+          <ContainerCardTrack />
+        </section>
+        <ContainerList tracks={tracks} />
       </section>
-      <ContainerList tracks={tracks} />
-    </section>
+      <div className="fixed right-5 bottom-5">
+        <ChatText serviceId={serviceId} />
+      </div>
+    </>
   );
 };
 

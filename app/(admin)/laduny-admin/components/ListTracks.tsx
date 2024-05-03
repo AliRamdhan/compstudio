@@ -12,7 +12,11 @@ const ListTracks = ({ tracks }: { tracks: TrackProgress[] }) => {
             <p>{track.TrackNumber}</p>
             <p>{track.TrackDescription} </p>
             <p>{track.TrackStaff}</p>
-            <Link href={`/laduny-admin/track/${track.TrackNumber}`}>Details</Link>
+            <Link
+              href={`/laduny-admin/track/${track.TrackNumber}/${track.ServiceId}`}
+            >
+              Details
+            </Link>
           </div>
         ))}
       </div>
