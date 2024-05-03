@@ -7,7 +7,7 @@ export default async function AdminLayout({
     children: React.ReactNode;
  }) {
     return (
-        <div className="flex">
+        <div className="flex bg-white">
             <Sidebar />
             <div className="flex-1">{children}</div>
         </div>
