@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import Swal from "sweetalert2";
 
 interface ProductTableProps {
@@ -60,7 +61,8 @@ function ProductTable({ id, name, price, link }: ProductTableProps) {
       </td>
       <td className="whitespace-nowrap px-4 py-2 text-gray-700">{id}</td>
       <td className="whitespace-nowrap px-4 py-2 text-gray-700">{price}</td>
-      <td className="whitespace-nowrap px-4 py-2 text-gray-700">{link}</td>
+      <td className="whitespace-nowrap px-4 py-2 text-gray-700">
+        <Link href={link}>{link}</Link></td>
       <td className="whitespace-nowrap px-4 py-2 flex justify-center gap-4">
         <button
           className="inline-block rounded bg-green-400 px-4 py-2 text-xs font-medium text-white"
