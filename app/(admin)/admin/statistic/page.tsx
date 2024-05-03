@@ -9,7 +9,7 @@ function page() {
   return (
     <section className='p-6 bg-white'>
       <div className='grid grid-cols-3 gap-6'>
-        <CardLineChart/>
+        {/* <CardLineChart/> */}
       </div>
     </section>
   )
