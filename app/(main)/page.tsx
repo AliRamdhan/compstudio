@@ -5,9 +5,9 @@ import Link from "next/link";
 import Image from "next/image";
 import { TypeAnimation } from "react-type-animation";
 import HeroPict from "@/laduny/public/images/hero-pict.png";
-import ContainerHighlightProduct from "../components/ContainerHiglightProduct";
-import ContainerProducts from "../components/ContainerProducts";
-import { Product } from "../commont.type";
+import ContainerHighlightProduct from "@/laduny/components/ContainerHiglightProduct";
+import ContainerProducts from "@/laduny/components/ContainerProducts";
+import { Product } from "@/laduny/commont.type";
 import { GetAllProductData } from "@/laduny/api/Products/route";
 export default function Home() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -47,7 +47,7 @@ export default function Home() {
                       sequence={[
                         // Same substring at the start will only be typed out once, initially
                         "Service",
-                        1000, // wait 1s before replacing "Mice" with "Hamsters"
+                        1000, // 
                         "Tracking",
                         1000,
                       ]}
@@ -75,7 +75,7 @@ export default function Home() {
                     </button>
                   </Link>
                   <Link href={`/laduny-track`} className="w-full">
-                    <button className="group w-full px-5 py-2 border border-white rounded-lg font-bold rounded-lg flex justify-center gap-2 items-center transition-all duration-300 hover:scale-110">
+                    <button className="group w-full px-5 py-2 border border-white font-bold rounded-lg flex justify-center gap-2 items-center transition-all duration-300 hover:scale-110">
                       Tracking Service
                     </button>
                   </Link>

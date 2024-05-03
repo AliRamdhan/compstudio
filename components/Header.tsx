@@ -36,7 +36,7 @@ const Header = () => {
     };
     fetchData();
   }, []);
-  
+
   const handleLogout = () => {
     const response = confirm("logout?");
     if (response == true) {
