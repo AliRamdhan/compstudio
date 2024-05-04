@@ -1,14 +1,17 @@
 import React from "react";
 import CardTrack from "./CardTrack";
+import { TrackStatus } from "@/laduny/commont.type";
 
-const ContainerCardTrack = () => {
-  const process = [1, 2, 3, 4];
-  //TRACK STATUS
+const ContainerCardTrack = ({
+  trackStatus,
+}: {
+  trackStatus: TrackStatus[];
+}) => {
   return (
-    <section className="w-full grid grid-cols-1 lg:grid-cols-4">
-      {process.map((proces, index) => (
-        <React.Fragment key={index}>
-          <CardTrack process={proces} index={index} processLength={process.length} />
+    <section className="w-full grid grid-cols-1 lg:grid-cols-4 gap-x-8 px-8">
+      {trackStatus.map((status) => (
+        <React.Fragment key={status.StatusID}>
+          <CardTrack {...status} />
         </React.Fragment>
       ))}
     </section>

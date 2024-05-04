@@ -96,6 +96,7 @@ export const CreateTrackProgressService = async (
   );
   return response.data;
 };
+
 export const GetAllTrackByTrackNumber = async ({
   trackNumber,
 }: {
@@ -139,3 +140,13 @@ export default async function handler(
     res.status(500).json({ error: "Internal Server Error" });
   }
 }
+
+export const GetAllStatusTrack = async () => {
+  try {
+    const response = await axios.get(`${apiBaseUrl}/track-status/all`);
+    return response.data.TrackStatus;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return [];
+  }
+};

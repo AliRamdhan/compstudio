@@ -33,7 +33,6 @@ export interface CategoryServiceSelection {
 //   ServiceCategory: number;
 //   CustomerUser: number;
 // }
-// interfaces.ts
 
 export interface ServiceForm {
   serviceID: number;
@@ -85,6 +84,12 @@ export interface TrackProgress {
   TrackDescription: string;
   TrackStatusRefer: number;
   ServiceId: number;
+  CreatedAt: string;
+  Status: {
+    StatusID: number;
+    StatusName: string;
+    StatusDescription: string;
+  };
 }
 export interface TrackProgressForm {
   TrackStatusRefer: number;
@@ -105,11 +110,17 @@ export interface ServiceForm {
 export interface Message {
   MessageId: number;
   MessageContent: string;
-  MessageISRead:  boolean;
+  MessageISRead: boolean;
   MessageService: number;
 }
 
 export interface MessageForm {
   MessageService: number;
   MessageContent: string;
+}
+
+export interface TrackStatus {
+  StatusID: number;
+  StatusName: string;
+  StatusDescription: string;
 }

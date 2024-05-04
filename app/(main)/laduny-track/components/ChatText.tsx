@@ -27,7 +27,7 @@ import { Message, MessageForm } from "@/laduny/commont.type";
 import {
   CreateMessage,
   GetAllChatsByServiceId,
-} from "../../../helpers/chat-service";
+} from "@/laduny/helpers/chat-service";
 
 const ChatText = ({ serviceId }: { serviceId: number }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -108,16 +108,15 @@ const ChatText = ({ serviceId }: { serviceId: number }) => {
                         display={`flex`}
                         justifyContent={`end`}
                       >
-                        <Box
-                          as="span"
-                          color="gray.600"
-                          fontSize="sm"
-                        >
+                        <Box as="span" color="gray.600" fontSize="sm">
                           {message.MessageContent}
                         </Box>
                       </Box>
                     ))}
                   </Container>
+                </ModalBody>
+
+                <ModalFooter display={`flex`} flexDirection={`column`}>
                   <FormControl mt={4}>
                     <FormLabel>Send Message</FormLabel>
                     <Textarea
@@ -127,13 +126,12 @@ const ChatText = ({ serviceId }: { serviceId: number }) => {
                       placeholder="Type your message"
                     />
                   </FormControl>
-                </ModalBody>
-
-                <ModalFooter>
-                  <Button colorScheme="blue" mr={3} type="submit">
-                    Send
-                  </Button>
-                  <Button onClick={onClose}>Cancel</Button>
+                  <Box mt={4} className="w-full flex justify-end items-center">
+                    <Button colorScheme="blue" mr={3} type="submit" className="w-44 px-2">
+                      Send
+                    </Button>
+                    <Button onClick={onClose}>Cancel</Button>
+                  </Box>
                 </ModalFooter>
               </ModalContent>
             </form>

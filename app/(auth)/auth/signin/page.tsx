@@ -27,7 +27,7 @@ const Page = () => {
           alert("succes login");
           localStorage.setItem("secretkey", JSON.stringify(token));
           if (user.roleuser === 1) {
-            router.push("/laduny-admin");
+            router.push("/admin");
           }
           if (user.roleuser === 2) {
             router.push("/laduny-dashboard");

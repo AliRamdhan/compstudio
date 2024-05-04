@@ -136,7 +136,7 @@ const Header = () => {
               ) : (
                 <li className="px-4 py-1 border broder-white rounded">
                   <Link
-                    href="/laduny-auth/signin"
+                    href="/auth/signin"
                     className={`transition hover:text-gray-600`}
                   >
                     {" "}
