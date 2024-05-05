@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 function AddButton() {
   const handleAddProduct = () => {
     Swal.fire({
-      title: "Add Product",
+      title: "Add Service",
       html: `
         <form id="addProductForm">
           <div class="mb-4">
@@ -17,8 +17,8 @@ function AddButton() {
             <input type="number" id="productPrice" name="productPrice" class="border rounded-md px-3 py-2 w-full" required>
           </div>
           <div class="mb-4">
-            <label for="productLink" class="block text-gray-700 text-sm font-bold mb-2">Product Link:</label>
-            <input type="text" id="productLink" name="productLink" class="border rounded-md px-3 py-2 w-full" required>
+            <label for="productProblem" class="block text-gray-700 text-sm font-bold mb-2">Product Problem:</label>
+            <input type="text" id="productProblem" name="productProblem" class="border rounded-md px-3 py-2 w-full" required>
           </div>
         </form>
       `,
@@ -32,18 +32,18 @@ function AddButton() {
         const productPriceInput = document.getElementById(
           "productPrice"
         ) as HTMLInputElement | null;
-        const productLinkInput = document.getElementById(
-          "productLink"
+        const productProblemInput = document.getElementById(
+          "productProblem"
         ) as HTMLInputElement | null;
 
-        if (!productNameInput || !productPriceInput || !productLinkInput) {
+        if (!productNameInput || !productPriceInput || !productProblemInput) {
           Swal.showValidationMessage("Please fill in all fields");
           return false;
         }
 
         const productName = productNameInput.value;
         const productPrice = productPriceInput.value;
-        const productLink = productLinkInput.value;
+        const productProblem = productProblemInput.value;
 
         // Replace the following alert with your logic for adding the product
         Swal.fire({
@@ -52,7 +52,7 @@ function AddButton() {
             <div>
               <p><b>Product Name:</b> ${productName}</p>
               <p><b>Product Price:</b> ${productPrice}</p>
-              <p><b>Product Link:</b> ${productLink}</p>
+              <p><b>Product Problem:</b> ${productProblem}</p>
             </div>
           `,
           icon: "success",
@@ -66,7 +66,7 @@ function AddButton() {
       className="inline-block rounded bg-emerald-600 px-4 py-2 text-md font-medium text-white"
       onClick={handleAddProduct}
     >
-      Add Products
+      Add Service
     </button>
   );
 }
