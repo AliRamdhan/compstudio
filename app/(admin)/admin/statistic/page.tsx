@@ -159,7 +159,7 @@ function page() {
         <CardStatistic title='Done' total={productDone}/>
         <CardStatistic title='Checking Preparation' total={productCheckingPreparation}/>
         <CardStatistic title='Consultation' total={productConsultation}/>
-        <CardStatistic title='Checking Preparation' total={productCheckingPreparation}/>
+        <CardStatistic title='Service' total={productService}/>
       </div>
       <CardLineChart chartData={chartData}/>
       <div className='grid grid-cols-2 gap-6'>
