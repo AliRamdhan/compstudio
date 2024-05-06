@@ -1,17 +1,52 @@
+"use client"
 import CardLineChart from '@/laduny/components/admin/CardLineChart';
 import CardBarChart from '@/laduny/components/admin/CardBarChart';
 import CardStatistic from '@/laduny/components/admin/CardStatistic';
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { GetUserTotal } from '@/laduny/api/User/route';
+import { GetAllProductData } from '@/laduny/api/Products/route';
+import { GetTrackStatus } from '@/laduny/api/TrackStatus/route';
 
 function page() {
 
-  const userData = [
-    { title: 'Users', total: '10', icon: 'user' },
-    { title: 'Orders', total: '25', icon: 'shopping-cart' },
-    { title: 'Process', total: '10', icon: 'dollar-sign' },
-    { title: 'Completed', total: '10', icon: 'dollar-sign' },
-  ];
+  const [totalProduct,setTotalProduct] = useState(0);
+  const [productDone,setProductDone] = useState(0);
+  const [productCheckingPreparation,setCheckingPreparation] = useState(0);
+  const [productService,setProductService] = useState(0);
+  const [productConsultation,setProductConsultation] = useState(0);
 
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const products = await GetAllProductData();
+        const trackStatus = await GetTrackStatus();
+        
+        const doneProduct = trackStatus.filter(status => status.StatusDescription === 'Done');
+        const checkingPreparationProduct = trackStatus.filter(status => status.StatusDescription === 'Checking Preparation');
+        const serviceProduct = trackStatus.filter(status => status.StatusDescription === 'Service');
+        const consultationProduct = trackStatus.filter(status => status.StatusDescription === 'Consultation');
+
+        // length
+        const productDone = doneProduct.length;
+        const productCheckingPreparation = checkingPreparationProduct.length;
+        const productService = serviceProduct.length;
+        const productConsultation = consultationProduct.length;
+        const totalProduct = products.length;
+
+        //set
+        setCheckingPreparation(productCheckingPreparation)
+        setProductConsultation(productConsultation)
+        setProductService(productService)
+        setProductDone(productDone)
+        setTotalProduct(totalProduct);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    }
+  
+    fetchData();
+  }, []);
+  
   const chartData = {
     labels: ["January", "February", "March", "April", "May", "June", "July"],
     datasets: [
@@ -118,18 +153,16 @@ function page() {
 
   return (
     <section className='p-6 bg-white'>
-      <div className='grid grid-cols-1 md:grid-cols-4 gap-6'>
-      {userData.map((data, index) => (
-          <CardStatistic
-            key={index}
-            title={data.title}
-            total={data.total}
-          />
-        ))}
+      <div className='grid grid-cols-1 md:grid-cols-3 gap-6'>
+        <CardStatistic title='Users' total={10}/>
+        <CardStatistic title='Product' total={totalProduct}/>
+        <CardStatistic title='Done' total={productDone}/>
+        <CardStatistic title='Checking Preparation' total={productCheckingPreparation}/>
+        <CardStatistic title='Consultation' total={productConsultation}/>
+        <CardStatistic title='Checking Preparation' total={productCheckingPreparation}/>
       </div>
       <CardLineChart chartData={chartData}/>
       <div className='grid grid-cols-2 gap-6'>
-        <CardBarChart chartDataBar={chartDataBar}/>
         <CardBarChart chartDataBar={chartDataBar}/>
       </div>
     </section>

@@ -2,7 +2,7 @@ import React from "react";
 
 interface CardStatisticProps{
     title: string;
-    total: string;
+    total: number;
     icon?: string;
 }
 
