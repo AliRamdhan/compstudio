@@ -95,21 +95,49 @@ const ChatText = ({ serviceId }: { serviceId: number }) => {
               <ModalContent>
                 <ModalHeader color="black">Chat Admin</ModalHeader>
                 <ModalCloseButton color="black" size={`xl`} mt={`4`} mr={`8`} />
-                <ModalBody pb={6} color="black">
-                  <Container maxW="4xl" centerContent>
+                <ModalBody pb={6}>
+                  <Container
+                    maxW="4xl"
+                    color="black"
+                    className="border border-black"
+                  >
                     {messages.map((message, index) => (
                       <Box
-                        padding="4"
-                        bg="gray.400"
+                        padding="2"
                         color="black"
                         maxW="4xl"
                         mt="2"
                         mb="2"
                         display={`flex`}
-                        justifyContent={`end`}
+                        flexDirection={`column`}
+                        justifyContent={
+                          message.User.roleuser == 1 ? `start` : `end`
+                        }
+                        alignItems={
+                          message.User.roleuser == 1 ? `start` : `end`
+                        }
                       >
-                        <Box as="span" color="gray.600" fontSize="sm">
+                        <Box
+                          as="span"
+                          maxW="xl"
+                          bg={`gray.400`}
+                          padding={`2`}
+                          rounded={`lg`}
+                          color={
+                            message.User.roleuser == 1 ? `gray.600` : `gray.800`
+                          }
+                          fontSize="sm"
+                        >
                           {message.MessageContent}
+                        </Box>
+                        <Box
+                          as="span"
+                          color={
+                            message.User.roleuser == 1 ? `gray.600` : `gray.800`
+                          }
+                          fontSize="sm"
+                        >
+                          {message.User.username}
                         </Box>
                       </Box>
                     ))}
@@ -127,7 +155,12 @@ const ChatText = ({ serviceId }: { serviceId: number }) => {
                     />
                   </FormControl>
                   <Box mt={4} className="w-full flex justify-end items-center">
-                    <Button colorScheme="blue" mr={3} type="submit" className="w-44 px-2">
+                    <Button
+                      colorScheme="blue"
+                      mr={3}
+                      type="submit"
+                      className="w-44 px-2"
+                    >
                       Send
                     </Button>
                     <Button onClick={onClose}>Cancel</Button>

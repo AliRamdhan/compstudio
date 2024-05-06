@@ -112,6 +112,16 @@ export interface Message {
   MessageContent: string;
   MessageISRead: boolean;
   MessageService: number;
+  User: {
+    username: string;
+    email: string;
+    roleuser: number;
+  };
+  Service: {
+    ServiceComplaint: string;
+    ServiceCustonmerName: string;
+    ServiceDate: string;
+  };
 }
 
 export interface MessageForm {
