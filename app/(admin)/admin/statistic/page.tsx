@@ -21,10 +21,10 @@ function page() {
         const products = await GetAllProductData();
         const trackStatus = await GetTrackStatus();
         
-        const doneProduct = trackStatus.filter(status => status.StatusDescription === 'Done');
-        const checkingPreparationProduct = trackStatus.filter(status => status.StatusDescription === 'Checking Preparation');
-        const serviceProduct = trackStatus.filter(status => status.StatusDescription === 'Service');
-        const consultationProduct = trackStatus.filter(status => status.StatusDescription === 'Consultation');
+        const doneProduct = trackStatus.filter(status => status.StatusName === 'Complete');
+        const checkingPreparationProduct = trackStatus.filter(status => status.StatusName === 'Checking Preparation');
+        const serviceProduct = trackStatus.filter(status => status.StatusName === 'Service');
+        const consultationProduct = trackStatus.filter(status => status.StatusName === 'Consultation');
 
         // length
         const productDone = doneProduct.length;
