@@ -3,9 +3,9 @@ import CardLineChart from '@/laduny/components/admin/CardLineChart';
 import CardBarChart from '@/laduny/components/admin/CardBarChart';
 import CardStatistic from '@/laduny/components/admin/CardStatistic';
 import React, { useEffect, useState } from 'react'
-import { GetUserTotal } from '@/laduny/api/User/route';
 import { GetAllProductData } from '@/laduny/api/Products/route';
 import { GetTrackStatus } from '@/laduny/api/TrackStatus/route';
+import { GetUser } from '@/laduny/api/User/route';
 
 function page() {
 
@@ -14,17 +14,21 @@ function page() {
   const [productCheckingPreparation,setCheckingPreparation] = useState(0);
   const [productService,setProductService] = useState(0);
   const [productConsultation,setProductConsultation] = useState(0);
+  const [totalUserActive,setTotalUserActive] = useState(0);
 
   useEffect(() => {
     async function fetchData() {
       try {
         const products = await GetAllProductData();
         const trackStatus = await GetTrackStatus();
+        const userTotal = await GetUser();
+
         
         const doneProduct = trackStatus.filter(status => status.StatusName === 'Complete');
         const checkingPreparationProduct = trackStatus.filter(status => status.StatusName === 'Checking Preparation');
         const serviceProduct = trackStatus.filter(status => status.StatusName === 'Service');
         const consultationProduct = trackStatus.filter(status => status.StatusName === 'Consultation');
+        const totalUser = userTotal.filter(role => role.roleUser != 1)
 
         // length
         const productDone = doneProduct.length;
@@ -32,8 +36,10 @@ function page() {
         const productService = serviceProduct.length;
         const productConsultation = consultationProduct.length;
         const totalProduct = products.length;
+        const totalUserActive = totalUser.length
 
         //set
+        setTotalUserActive(totalUserActive)
         setCheckingPreparation(productCheckingPreparation)
         setProductConsultation(productConsultation)
         setProductService(productService)
@@ -154,7 +160,7 @@ function page() {
   return (
     <section className='p-6 bg-white'>
       <div className='grid grid-cols-1 md:grid-cols-3 gap-6'>
-        <CardStatistic title='Users' total={10}/>
+        <CardStatistic title='Users' total={totalUserActive}/>
         <CardStatistic title='Product' total={totalProduct}/>
         <CardStatistic title='Done' total={productDone}/>
         <CardStatistic title='Checking Preparation' total={productCheckingPreparation}/>
