@@ -4,8 +4,13 @@ import React, { useState, useEffect } from "react";
 import LogoLaduny from "@/laduny/public/images/logo-laduny.png";
 import Image from "next/image";
 import Link from "next/link";
+import { getUserData } from "../helpers/api-service";
+import { User } from "@/laduny/commont.type";
+import { useRouter } from "next/navigation";
 const Header = () => {
   const [scrollY, setScrollY] = useState<number>(0);
+  const [user, setUser] = useState<User>();
+  const router = useRouter();
   useEffect(() => {
     if (typeof window !== "undefined") {
       const handleScroll = () => {
@@ -20,6 +25,26 @@ const Header = () => {
       };
     }
   }, []);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await getUserData();
+        setUser(response.data.user);
+      } catch (error) {
+        console.error("Error fetching user:", error);
+      }
+    };
+    fetchData();
+  }, []);
+
+  const handleLogout = () => {
+    const response = confirm("logout?");
+    if (response == true) {
+      localStorage.removeItem("secretkey");
+      router.push("/");
+    }
+  };
+
   return (
     <header
       className={`sticky top-0 z-50 ${
@@ -51,16 +76,17 @@ const Header = () => {
                   Home{" "}
                 </Link>
               </li> */}
-              <li>
-                <Link
-                  href="/laduny-service"
-                  className={`transition hover:text-gray-600`}
-                >
-                  {" "}
-                  Services{" "}
-                </Link>
-              </li>
-
+              {user && (
+                <li>
+                  <Link
+                    href="/laduny-service"
+                    className={`transition hover:text-gray-600`}
+                  >
+                    {" "}
+                    Services{" "}
+                  </Link>
+                </li>
+              )}
               <li>
                 <a
                   href="/laduny-track"
@@ -100,15 +126,24 @@ const Header = () => {
                   Contact Us{" "}
                 </Link>
               </li>
-              <li className="px-4 py-1 border broder-white rounded">
-                <Link
-                  href="/auth/signin"
-                  className={`transition hover:text-gray-600`}
+              {user ? (
+                <button
+                  onClick={handleLogout}
+                  className="px-4 py-1 border broder-white rounded"
                 >
-                  {" "}
-                  Login
-                </Link>
-              </li>
+                  LOGOUT
+                </button>
+              ) : (
+                <li className="px-4 py-1 border broder-white rounded">
+                  <Link
+                    href="/auth/signin"
+                    className={`transition hover:text-gray-600`}
+                  >
+                    {" "}
+                    Login
+                  </Link>
+                </li>
+              )}
             </ul>
           </nav>
         </div>

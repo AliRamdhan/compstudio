@@ -7,20 +7,34 @@ import axios from "axios";
 const Page = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const router = useRouter()
+  const router = useRouter();
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const login = await axios.post(
+      const response = await axios.post(
         `${process.env.NEXT_PUBLIC_BASE_URL}/auth/login`,
         {
           email: email,
           password: password,
         }
       );
-      if (login) {
-        alert("succes login");
-        router.push("/laduny-dashboard")
+
+      if (response) {
+        console.log(response);
+        const token = response.data.token;
+        const user = response.data.user;
+        if (token) {
+          alert("succes login");
+          localStorage.setItem("secretkey", JSON.stringify(token));
+          if (user.roleuser === 1) {
+            router.push("/admin");
+          }
+          if (user.roleuser === 2) {
+            router.push("/laduny-dashboard");
+          }
+        } else {
+          throw new Error("No token received");
+        }
       }
     } catch (error) {
       console.log(error);
