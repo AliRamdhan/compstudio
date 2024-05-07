@@ -19,12 +19,17 @@ export const getAdminData = () => {
   });
 };
 
-export const getUserData = () => {
-  return axios.get(`${apiBaseUrl}/home/user`, {
-    headers: {
-      Authorization: authHeader(),
-    },
-  });
+export const GetUserData = async () => {
+  try {
+    const response = await axios.get(`${apiBaseUrl}/home/user`, {
+      headers: {
+        Authorization: authHeader(),
+      },
+    });
+    return response.data.user;
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const GetAllProductData = async () => {
@@ -72,6 +77,16 @@ export const GetServiceById = async (serviceId: number) => {
   }
 };
 
+export const GetServiceByUserId = async (userId: number) => {
+  try {
+    const response = await axios.get(`${apiBaseUrl}/service/user/${userId}`);
+    return response.data.Service;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return [];
+  }
+};
+
 //Track
 export const GetAllTrack = async () => {
   try {
@@ -86,6 +101,7 @@ export const CreateTrackService = async (serviceId: number) => {
   const response = await axios.post(`${apiBaseUrl}/track/create`, serviceId);
   return response.data;
 };
+
 export const CreateTrackProgressService = async (
   trackNumber: string,
   formdata: TrackProgressForm
@@ -112,7 +128,31 @@ export const GetAllTrackByTrackNumber = async ({
     return [];
   }
 };
+
+export const GetTrackByServiceId = async (serviceId: number) => {
+  try {
+    const response = await axios.get(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/track/service/${serviceId}`
+    );
+    return response.data.Track;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return [];
+  }
+};
 // pages/api/service/create.ts
+
+//TRACK STATUS
+
+export const GetAllStatusTrack = async () => {
+  try {
+    const response = await axios.get(`${apiBaseUrl}/track-status/all`);
+    return response.data.TrackStatus;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return [];
+  }
+};
 
 export default async function handler(
   req: NextApiRequest,
@@ -140,13 +180,3 @@ export default async function handler(
     res.status(500).json({ error: "Internal Server Error" });
   }
 }
-
-export const GetAllStatusTrack = async () => {
-  try {
-    const response = await axios.get(`${apiBaseUrl}/track-status/all`);
-    return response.data.TrackStatus;
-  } catch (error) {
-    console.error("Error fetching data:", error);
-    return [];
-  }
-};

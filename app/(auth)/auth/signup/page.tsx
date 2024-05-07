@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
@@ -23,7 +24,7 @@ const Page = () => {
       );
       if (register) {
         alert("Registration successful");
-        router.push("/laduny-auth/signin");
+        router.push("/auth/signin");
       }
     } catch (error) {
       console.log(error);

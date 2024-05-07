@@ -1,4 +1,5 @@
-import React, { useRef, useState } from "react";
+"use client";
+import React, { useRef } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -11,21 +12,10 @@ import { Pagination, Navigation } from "swiper/modules";
 import { Product } from "../commont.type";
 import CardProduct from "./CardProduct";
 
-const ContainerHighlightProduct = ({
-  products,
-  loading,
-  setLoading,
-}: {
-  products: Product[];
-  loading: Boolean;
-  setLoading: (loading: boolean) => void;
-}) => {
+const ContainerHighlightProduct = ({ products }: { products: Product[] }) => {
   return (
     <div className="text-black">
       <Swiper
-        // pagination={{
-        //   type: "fraction",
-        // }}
         navigation={true}
         slidesPerView={5}
         spaceBetween={10}
@@ -35,15 +25,11 @@ const ContainerHighlightProduct = ({
         modules={[Pagination]}
         className="mySwiper text-black"
       >
-        {loading ? (
-          <p>Loading...</p>
-        ) : (
-          products.map((product) => (
-            <SwiperSlide key={product.ProductID}>
-              <CardProduct {...product} />
-            </SwiperSlide>
-          ))
-        )}
+        {products.map((product) => (
+          <SwiperSlide key={product.ProductID}>
+            <CardProduct {...product} />
+          </SwiperSlide>
+        ))}
       </Swiper>
     </div>
   );

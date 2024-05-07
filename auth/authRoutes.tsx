@@ -14,7 +14,8 @@ const authRoute = (Component: any) => {
 
         if (!token) {
           alert("Authentication required");
-          router.replace("/");
+          window.location.reload();
+          router.replace("/auth/signin");
         } else {
           setAuthenticated(true);
         }

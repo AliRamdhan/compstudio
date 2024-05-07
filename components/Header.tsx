@@ -4,9 +4,24 @@ import React, { useState, useEffect } from "react";
 import LogoLaduny from "@/laduny/public/images/logo-laduny.png";
 import Image from "next/image";
 import Link from "next/link";
-import { getUserData } from "../helpers/api-service";
+import { GetUserData } from "../helpers/api-service";
 import { User } from "@/laduny/commont.type";
 import { useRouter } from "next/navigation";
+import { Icon } from "@chakra-ui/react";
+import { FaUserShield } from "react-icons/fa";
+import {
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  MenuItemOption,
+  MenuGroup,
+  MenuOptionGroup,
+  MenuDivider,
+  Button,
+} from "@chakra-ui/react";
+import { ChevronDownIcon } from "@chakra-ui/icons";
+
 const Header = () => {
   const [scrollY, setScrollY] = useState<number>(0);
   const [user, setUser] = useState<User>();
@@ -28,8 +43,8 @@ const Header = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await getUserData();
-        setUser(response.data.user);
+        const user = await GetUserData();
+        setUser(user);
       } catch (error) {
         console.error("Error fetching user:", error);
       }
@@ -127,12 +142,26 @@ const Header = () => {
                 </Link>
               </li>
               {user ? (
-                <button
-                  onClick={handleLogout}
-                  className="px-4 py-1 border broder-white rounded"
-                >
-                  LOGOUT
-                </button>
+                <>
+                  <Menu>
+                    <MenuButton className="border-b border-white">
+                      {user.username} <ChevronDownIcon w="6" h="6" />
+                    </MenuButton>
+                    <MenuList>
+                      <MenuItem>
+                        <Link
+                          href={`/laduny-dashboard/${user.username}/services`}
+                          className="w-full h-full text-black"
+                        >
+                          Your Services
+                        </Link>
+                      </MenuItem>
+                      <MenuItem onClick={handleLogout}>
+                        <p className="text-black">Logout</p>
+                      </MenuItem>
+                    </MenuList>
+                  </Menu>
+                </>
               ) : (
                 <li className="px-4 py-1 border broder-white rounded">
                   <Link
@@ -159,3 +188,28 @@ export default Header;
 // Merek laptop
 // Keluhan
 // Appointment
+
+// Mobile
+
+// <Menu>
+//   <MenuButton
+//     as={IconButton}
+//     aria-label='Options'
+//     icon={<HamburgerIcon />}
+//     variant='outline'
+//   />
+//   <MenuList>
+//     <MenuItem icon={<AddIcon />} command='⌘T'>
+//       New Tab
+//     </MenuItem>
+//     <MenuItem icon={<ExternalLinkIcon />} command='⌘N'>
+//       New Window
+//     </MenuItem>
+//     <MenuItem icon={<RepeatIcon />} command='⌘⇧N'>
+//       Open Closed Tab
+//     </MenuItem>
+//     <MenuItem icon={<EditIcon />} command='⌘O'>
+//       Open File...
+//     </MenuItem>
+//   </MenuList>
+// </Menu>

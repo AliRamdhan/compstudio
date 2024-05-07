@@ -48,15 +48,15 @@ function page() {
         // const checkingPreparationProduct = trackStatus.filter(status => status.StatusName === 'Checking Preparation');
         // const serviceProduct = trackStatus.filter(status => status.StatusName === 'Service');
         // const consultationProduct = trackStatus.filter(status => status.StatusName === 'Consultation');
-        // const totalUser = userTotal.filter(role => role.roleUser != 1)
+        const totalUser = userTotal.filter(role => role.roleUser != 1)
 
         // length
         // const productDone = doneProduct.length;
         // const productCheckingPreparation = checkingPreparationProduct.length;
         // const productService = serviceProduct.length;
         // const productConsultation = consultationProduct.length;
-        // const totalProduct = products.length;
-        // const totalUserActive = totalUser.length;
+        const totalProduct = products.length;
+        const totalUserActive = totalUser.length;
 
         //set
         setTotalUserActive(totalUserActive);

@@ -1,34 +1,28 @@
-"use client";
-
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { TypeAnimation } from "react-type-animation";
-import HeroPict from "@/laduny/public/images/hero-pict.png";
-import ContainerHighlightProduct from "@/laduny/components/ContainerHiglightProduct";
-import ContainerProducts from "@/laduny/components/ContainerProducts";
-import { Product } from "@/laduny/commont.type";
-import { GetAllProductData } from "@/laduny/api/Products/route";
-export default function Home() {
-  const [products, setProducts] = useState<Product[]>([]);
-  const [loadingProduct, setLoadingProduct] = useState<Boolean>(true);
+import dynamic from "next/dynamic";
 
-  useEffect(() => {
-    const fetchProductsData = async () => {
-      try {
-        setLoadingProduct(true);
-        const productsData = await GetAllProductData();
-        setProducts(productsData);
-        setLoadingProduct(false);
-      } catch (error) {
-        console.error("Error fetching products data:", error);
-        setLoadingProduct(false);
-      }
-    };
-    setLoadingProduct(true);
-    fetchProductsData();
-  }, []);
-  
+import HeroPict from "@/laduny/public/images/hero-pict.png";
+import TypeAnimations from "@/laduny/components/TypeAnimation";
+import { GetAllProductData } from "@/laduny/api/Products/route";
+
+const ContainerProducts = dynamic(
+  () => import("@/laduny/components/ContainerProducts"),
+  {
+    loading: () => <p>Loading....</p>,
+  }
+);
+
+const ContainerHighlightProduct = dynamic(
+  () => import("@/laduny/components/ContainerHiglightProduct"),
+  {
+    loading: () => <p>Loading....</p>,
+  }
+);
+
+const Home = async () => {
+  const products = await GetAllProductData();
   return (
     <>
       <section className="w-full h-full px-16">
@@ -43,23 +37,7 @@ export default function Home() {
                 <div className="flex items-center gap-2 text-2xl font-extrabold text-white lg:text-3xl mt-2">
                   <p>your</p>
                   <div className="px-0.5">
-                    <TypeAnimation
-                      sequence={[
-                        // Same substring at the start will only be typed out once, initially
-                        "Service",
-                        1000, // 
-                        "Tracking",
-                        1000,
-                      ]}
-                      wrapper="span"
-                      speed={10}
-                      style={{
-                        fontSize: "1.7em",
-                        display: "inline-block",
-                        marginTop: "3px",
-                      }}
-                      repeat={Infinity}
-                    />
+                    <TypeAnimations />
                   </div>
                   <p>computer</p>
                 </div>
@@ -115,11 +93,7 @@ export default function Home() {
               </p>
             </div>
             <div className="px-8">
-              <ContainerHighlightProduct
-                products={products}
-                loading={loadingProduct}
-                setLoading={setLoadingProduct}
-              />
+              <ContainerHighlightProduct products={products} />
             </div>
             <div className="w-full mt-8">
               <div className="flex mb-2 pb-2">
@@ -128,10 +102,7 @@ export default function Home() {
                 </p>
               </div>
               <div className="px-8">
-                <ContainerProducts
-                  products={products}
-                  loading={loadingProduct}
-                />
+                <ContainerProducts products={products} />
                 <div className="text-right">
                   <Link
                     href={`/laduny-products`}
@@ -147,4 +118,6 @@ export default function Home() {
       </section>
     </>
   );
-}
+};
+
+export default Home;

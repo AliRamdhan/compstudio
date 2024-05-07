@@ -34,6 +34,7 @@ const ChatText = ({ serviceId }: { serviceId: number }) => {
   const [formData, setFormData] = useState<MessageForm>({
     MessageService: serviceId,
     MessageContent: "",
+    MessageUser: 2,
   });
   const [error, setError] = useState<string | null>(null);
   const [messages, setMessages] = useState<Message[]>([]);
@@ -54,11 +55,14 @@ const ChatText = ({ serviceId }: { serviceId: number }) => {
       setFormData({
         MessageService: serviceId,
         MessageContent: "",
+        MessageUser: 2,
       });
+      window.location.reload();
     } catch (error) {
       setError("Failed to create service");
     }
   };
+
   useEffect(() => {
     const fetchData = async () => {
       try {

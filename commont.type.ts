@@ -1,7 +1,8 @@
 export interface User {
+  user_id: number;
   username: string;
   email: string;
-  role: number;
+  role_id: number;
 }
 
 export interface Product {
@@ -64,6 +65,7 @@ export interface CreateServiceRequest {
   serviceLaptopName: string;
   serviceLaptopVersion: string;
   serviceComplaint: string;
+  serviceCustonmerName: string;
   customerUser: number;
   serviceCategory: number;
 }
@@ -89,6 +91,11 @@ export interface TrackProgress {
     StatusID: number;
     StatusName: string;
     StatusDescription: string;
+  };
+  Service: {
+    ServiceComplaint: string;
+    ServiceCustonmerName: string;
+    ServiceDate: string;
   };
 }
 export interface TrackProgressForm {
@@ -127,6 +134,7 @@ export interface Message {
 export interface MessageForm {
   MessageService: number;
   MessageContent: string;
+  MessageUser: number;
 }
 
 export interface TrackStatus {

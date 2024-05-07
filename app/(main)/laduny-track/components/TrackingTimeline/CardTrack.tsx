@@ -1,4 +1,4 @@
-import { TrackStatus } from "../../../../../commont.type";
+import { TrackStatus } from "@/laduny/commont.type";
 // const CardTrack: React.FC<CardTrackProps> = ({
 //   process,
 //   index,

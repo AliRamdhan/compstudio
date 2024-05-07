@@ -1,8 +1,8 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { getUserData } from "@/laduny/helpers/api-service";
+import { GetUserData } from "@/laduny/helpers/api-service";
 import { useRouter } from "next/navigation";
-import {User} from "@/laduny/commont.type";
+import { User } from "@/laduny/commont.type";
 const Page = () => {
   const [user, setUser] = useState<User>();
   const [message, setMessage] = useState<string>("");
@@ -10,9 +10,9 @@ const Page = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await getUserData();
-        setUser(response.data.user);
-        setMessage(response.data.message);
+        const user = await GetUserData();
+        console.log(user);
+        setUser(user);
       } catch (error) {
         console.error("Error fetching user:", error);
       }

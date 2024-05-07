@@ -5,7 +5,6 @@ import React, { useRef } from "react";
 import { Search2Icon } from "@chakra-ui/icons";
 import TrackPicture from "@/laduny/public/images/track-pict.png";
 import { useRouter } from "next/navigation";
-import { redirect } from "next/navigation";
 const Page = () => {
   const inputRef = useRef<HTMLInputElement | null>(null);
   const router = useRouter();

@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useState, useEffect, ChangeEvent, FormEvent } from "react";
 import Select, { ValueType, OptionTypeBase } from "react-select";
 import axios from "axios";
@@ -8,25 +9,37 @@ import {
   CreateServiceRequest,
   CreateServiceResponse,
   ErrorResponse,
+  User,
 } from "@/laduny/commont.type";
-import { GetAllServiceCategoryData } from "@/laduny/helpers/api-service";
+import {
+  GetAllServiceCategoryData,
+  GetUserData,
+} from "@/laduny/helpers/api-service";
 const CreateServiceForm = () => {
   const [catSelection, setCatSelection] = useState<CategoryServiceSelection[]>(
     []
   );
   const [selectedCategory, setSelectedCategory] = useState<boolean>(false);
+  const [users, setUsers] = useState<User>();
   const [formData, setFormData] = useState<CreateServiceRequest>({
     serviceLaptopName: "",
     serviceLaptopVersion: "",
     serviceComplaint: "",
-    customerUser: 2, // Set the appropriate default value
-    serviceCategory: 0, // Set the appropriate default value
+    serviceCustonmerName: "",
+    customerUser: 0,
+    serviceCategory: 0,
   });
   const [error, setError] = useState<string | null>(null);
   useEffect(() => {
     const fetchProductsData = async () => {
       try {
         const response = await GetAllServiceCategoryData();
+        const user = await GetUserData();
+        setUsers(user);
+        setFormData((prevState) => ({
+          ...prevState,
+          customerUser: user.user_id, // Assuming user_id exists in the User object
+        }));
         // Map CategoryService data to CategoryServiceSelection
         const mappedCategories = response.map((category: CategoryService) => ({
           value: category.CatID,
@@ -72,6 +85,14 @@ const CreateServiceForm = () => {
       }
       console.log(response.data);
       setError(null);
+      setFormData({
+        serviceLaptopName: "",
+        serviceLaptopVersion: "",
+        serviceComplaint: "",
+        serviceCustonmerName: "",
+        customerUser: users ? users.user_id : 0,
+        serviceCategory: 0,
+      });
     } catch (error) {
       // console.error("Error creating service:", error.response?.data);
       setError("Failed to create service");
@@ -115,18 +136,32 @@ const CreateServiceForm = () => {
           </div>
           <div className="w-full">
             <div className="relative">
-              <label htmlFor="serviceCategory" className="text-lg font-medium">
-                Category:
-              </label>
-              <Select
-                id="serviceCategory"
-                options={catSelection}
-                className="mt-1 text-black"
-                onChange={(selectedOptions) => {
-                  handleCategoryChange(selectedOptions);
-                }}
-              />
-
+              <div>
+                <label className="text-lg font-medium">Customer Name :</label>
+                <input
+                  type="text"
+                  className="w-full rounded-lg border-gray-200 px-4 py-2.5 text-sm shadow-sm text-black mt-1"
+                  name="serviceCustonmerName"
+                  value={formData.serviceCustonmerName}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="relative mt-4">
+                <label
+                  htmlFor="serviceCategory"
+                  className="text-lg font-medium"
+                >
+                  Category:
+                </label>
+                <Select
+                  id="serviceCategory"
+                  options={catSelection}
+                  className="mt-1 text-black"
+                  onChange={(selectedOptions) => {
+                    handleCategoryChange(selectedOptions);
+                  }}
+                />
+              </div>
               {selectedCategory && ( // Only render the complaint input if a category is selected
                 <>
                   <label
