@@ -2,8 +2,8 @@
 
 import React, { useState, useEffect } from "react";
 import ContainerCardTrack from "../components/TrackingTimeline/ContainerCardTrack";
-import { TrackProgress } from "../../../commont.type";
-import { GetTrackSpesific } from "../../../api/Track/route";
+import { TrackProgress } from "@/laduny/commont.type";
+import { GetTrackSpesific } from "@/laduny/api/Track/route";
 
 import ContainerList from "../components/TrackingList/ContainerList";
 const Page = ({ params }: { params: { id: string } }) => {

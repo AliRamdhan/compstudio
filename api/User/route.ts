@@ -2,6 +2,12 @@ import axios from "axios";
 
 interface User{
   roleUser: number;
+  userId: number;
+  username: string;
+  email: string;
+  address: string;
+  createdAt: Date;
+  updateAt: Date;
 }
 
 
@@ -16,6 +22,14 @@ export const GetUser = async () => {
     return [];
   }
 };
+
+// export const UserUpdate = async () => {
+//   try{
+//     const response = await axios.put()
+//   } catch (error){
+//     console.log("Error update account")
+//   }
+// }
 
 export const FilterUserByRole = async (roleUser : number) => {
     try {
