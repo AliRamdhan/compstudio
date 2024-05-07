@@ -6,22 +6,20 @@ import AddButton from "./_components/AddButton";
 function page() {
   const users = [
     {
-      name: "John Doe",
-      dob: "24/05/1995",
-      role: "Web Developer",
-      salary: "$120,000",
+      userId: 1,
+      username: "alief",
+      email: "alieffirmanda@gmail.com",
+      address: "Cikarang",
+      createdAt: new Date("2024-05-04 03:12:05"),
+      updateAt: new Date("2024-05-06 03:12:05"),
     },
     {
-      name: "Jane Doe",
-      dob: "04/11/1980",
-      role: "Web Designer",
-      salary: "$100,000",
-    },
-    {
-      name: "Gary Barlow",
-      dob: "24/05/1995",
-      role: "Singer",
-      salary: "$20,000",
+      userId: 2,
+      username: "alief",
+      email: "alieffirmanda@gmail.com",
+      address: "Cikarang",
+      createdAt: new Date("2024-05-04 03:12:05"),
+      updateAt: new Date("2024-05-06 03:12:05"),
     },
   ];
 
@@ -33,16 +31,22 @@ function page() {
           <thead className="text-center">
             <tr>
               <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
-                Name
+                User Id
               </th>
               <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
-                Date of Birth
+                Username
               </th>
               <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
-                Role
+                Email
               </th>
               <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
-                Salary
+                Address
+              </th>
+              <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                Account Created At
+              </th>
+              <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                Account Update At
               </th>
               <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
                 Action

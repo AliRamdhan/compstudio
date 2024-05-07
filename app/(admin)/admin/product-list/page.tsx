@@ -9,7 +9,7 @@ function page() {
           id: 1,
           name: 'Product 1',
           price: 10,
-          link: 'https://example.com/product1',
+          link: 'https://tokopedia.link/Mm3K1r1bjJb',
         },
         {
           id: 2,

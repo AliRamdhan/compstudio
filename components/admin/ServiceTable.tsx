@@ -2,22 +2,22 @@
 import Link from "next/link";
 import Swal from "sweetalert2";
 
-interface ProductTableProps {
+interface ServiceTableProps {
   id: number;
   name: string;
+  problem?: string;
   price: number;
-  link: string;
 }
 
-function ProductTable({ id, name, price, link }: ProductTableProps) {
+function ServiceTable({ id, name, price,problem }: ServiceTableProps) {
   const handleView = () => {
     Swal.fire({
       title: "View Product",
       html: `
       <b>Id:</b> ${id}<br>
       <b>Name:</b> ${name}<br>
+      <b>Problem:</b> ${problem}<br>
         <b>Price:</b> ${price}<br>
-        <b>Link:</b> ${link}<br>
       `,
       icon: "info",
       confirmButtonText: "Close",
@@ -31,8 +31,8 @@ function ProductTable({ id, name, price, link }: ProductTableProps) {
       html: `
       <b>Id:</b> ${id}<br>
       <b>Name:</b> ${name}<br>
+      <b>Name:</b> ${problem}<br>
         <b>Price:</b> ${price}<br>
-        <b>Link:</b> ${link}<br>
       `,
       icon: "warning",
       confirmButtonText: "Close",
@@ -57,12 +57,11 @@ function ProductTable({ id, name, price, link }: ProductTableProps) {
   return (
     <tr>
       <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
-        {name}
+        {id}
       </td>
-      <td className="whitespace-nowrap px-4 py-2 text-gray-700">{id}</td>
+      <td className="whitespace-nowrap px-4 py-2 text-gray-700">{name}</td>
+      <td className="whitespace-nowrap px-4 py-2 text-gray-700">{problem}</td>
       <td className="whitespace-nowrap px-4 py-2 text-gray-700">{price}</td>
-      <td className="whitespace-nowrap px-4 py-2 text-gray-700">
-        <Link href={link}>{link}</Link></td>
       <td className="whitespace-nowrap px-4 py-2 flex justify-center gap-4">
         <button
           className="inline-block rounded bg-green-400 px-4 py-2 text-xs font-medium text-white"
@@ -87,4 +86,4 @@ function ProductTable({ id, name, price, link }: ProductTableProps) {
   );
 }
 
-export default ProductTable;
+export default ServiceTable;
