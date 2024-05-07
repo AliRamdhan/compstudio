@@ -142,3 +142,10 @@ export interface TrackStatus {
   StatusName: string;
   StatusDescription: string;
 }
+
+export interface ChatCardProps{
+  chatId: string;
+  problem: string;
+  username: string;
+  lastChat: string;
+}
