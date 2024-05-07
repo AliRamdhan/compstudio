@@ -23,7 +23,7 @@ export const GetUser = async () => {
   }
 };
 
-// export const UserUpdate = async () => {
+// export const UserUpdate = async ({id}: {id: number}) => {
 //   try{
 //     const response = await axios.put()
 //   } catch (error){

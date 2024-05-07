@@ -1,49 +1,61 @@
-import Title from '@/laduny/components/admin/Title'
-import React from 'react'
-import AddButton from './_components/AddButton'
-import ServiceTable from '@/laduny/components/admin/ServiceTable'
+import Title from "@/laduny/components/admin/Title";
+import TrackTable from "@/laduny/components/admin/TrackTable";
+import React from "react";
+import AddButton from "./_components/AddButton";
 
 function page() {
-
-  const services = [
+  const dummyData = [
     {
-      id: 1,
-      name: "Service 1",
-      problem: "Problem 1",
-      price: 50.00,
+      trackId: 1,
+      trackNumber: "TN001",
+      trackStatus: 1,
+      trackDescription: "Description 1",
+      serviceId: 1,
+      serviceCustomerName: "Customer 1",
+      serviceLaptopName: "Laptop 1",
+      userPhoneNumber: 1234567890,
+      trackStaff: "Staff 1",
+      createdAt: new Date(),
+      updateAt: new Date()
     },
     {
-      id: 2,
-      name: "Service 2",
-      problem: "Problem 2",
-      price: 75.00,
-    },
-    {
-      id: 3,
-      name: "Service 3",
-      problem: "Problem 3",
-      price: 100.00,
+      trackId: 2,
+      trackNumber: "TN002",
+      trackStatus: 2,
+      trackDescription: "Description 2",
+      serviceId: 2,
+      serviceCustomerName: "Customer 2",
+      serviceLaptopName: "Laptop 2",
+      userPhoneNumber: 124213231,
+      trackStaff: "Staff 2",
+      createdAt: new Date(),
+      updateAt: new Date()
     },
   ];
-
   return (
     <section>
-        <Title title='Service List'/>
-        <div className="overflow-x-auto">
+      <Title title="Tracking Page" />
+      <div className="overflow-x-auto">
         <table className="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
           <thead className="text-center">
             <tr>
               <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
-                Id
+                Track ID
               </th>
               <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
-                Name
+                Track Number
               </th>
               <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
-                Problem
+                Track Status
               </th>
               <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
-                Price
+                Track Description
+              </th>
+              <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                Service ID
+              </th>
+              <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                Service Customer Name
               </th>
               <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
                 Action
@@ -55,14 +67,14 @@ function page() {
           </thead>
 
           <tbody className="divide-y divide-gray-200 text-center">
-            {services.map((service, index) => (
-              <ServiceTable key={index} {...service} />
+            {dummyData.map((track , index) => (
+              <TrackTable key={index} {...track} />
             ))}
           </tbody>
         </table>
       </div>
     </section>
-  )
+  );
 }
 
-export default page
+export default page;
