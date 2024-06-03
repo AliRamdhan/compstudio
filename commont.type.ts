@@ -5,6 +5,20 @@ export interface User {
   role_id: number;
 }
 
+export interface Users {
+  UserID: number;
+  username: string;
+  email: string;
+  wanumber: number;
+  address: number;
+  roleuser: number;
+  Role: {
+    RoleID: number;
+    Name: string;
+    Description: string;
+  };
+}
+
 export interface Product {
   ProductID: number;
   ProductName: string;
@@ -58,7 +72,18 @@ export interface Service {
   ServiceComplaint: string;
   IsCompleteService: string;
   CustomerUser: number;
-  ServiceCategory: number;
+  User: {
+    UserID: number;
+    username: string;
+    email: string;
+  };
+  Service: {
+    ServiceCategory: number;
+  };
+  CategoryService: {
+    CatID: number;
+    CatName: string;
+  };
 }
 
 export interface CreateServiceRequest {
@@ -96,6 +121,7 @@ export interface TrackProgress {
     ServiceComplaint: string;
     ServiceCustonmerName: string;
     ServiceDate: string;
+    ServiceCategory: number;
   };
 }
 export interface TrackProgressForm {
@@ -143,7 +169,7 @@ export interface TrackStatus {
   StatusDescription: string;
 }
 
-export interface ChatCardProps{
+export interface ChatCardProps {
   chatId: string;
   problem: string;
   username: string;

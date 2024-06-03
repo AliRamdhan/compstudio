@@ -32,6 +32,18 @@ export const GetUserData = async () => {
   }
 };
 
+//User
+export const GetAllUser = async () => {
+  try {
+    const response = await axios.get(`${apiBaseUrl}/auth/user/all`);
+    return response.data.User;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return [];
+  }
+};
+
+// Product
 export const GetAllProductData = async () => {
   try {
     const response = await axios.get(`${apiBaseUrl}/products/all`);
@@ -54,6 +66,16 @@ export const GetAllServiceCategoryData = async () => {
 };
 
 // SERVICE
+export const GetAllService = async () => {
+  try {
+    const response = await axios.get(`${apiBaseUrl}/service/all`);
+    return response.data.Services;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return [];
+  }
+};
+
 export const CreateService = async (serviceForm: ServiceForm) => {
   try {
     const response = await axios.post(
@@ -91,6 +113,15 @@ export const GetServiceByUserId = async (userId: number) => {
 export const GetAllTrack = async () => {
   try {
     const response = await axios.get(`${apiBaseUrl}/track/all`);
+    return response.data.Tracks;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return [];
+  }
+};
+export const GetAllTrackLatest = async () => {
+  try {
+    const response = await axios.get(`${apiBaseUrl}/track/all/latest`);
     return response.data.Tracks;
   } catch (error) {
     console.error("Error fetching data:", error);

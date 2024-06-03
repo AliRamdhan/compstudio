@@ -12,6 +12,15 @@ export const GetAllChats = async () => {
     return [];
   }
 };
+export const GetLastMessagebyService = async (serviceId: number) => {
+  try {
+    const response = await axios.get(`${apiBaseUrl}/message/${serviceId}`);
+    return response.data.Messages;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return [];
+  }
+};
 
 export const GetAllChatsByServiceId = async (serviceId: number) => {
   try {

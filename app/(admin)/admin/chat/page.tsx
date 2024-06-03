@@ -1,33 +1,17 @@
 import ChatCard from "@/laduny/components/admin/ChatCard";
+import { GetAllService } from "@/laduny/helpers/api-service";
 import React from "react";
 
-function page() {
-
-    // const chatList = await 
-
-  const chatData = [
-    {
-      chatId: "adsdasd",
-      problem: "dasdas",
-      username: "asdasd",
-      lastChat:
-        "LoremIpsum dasdasdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
-    },
-    {
-        chatId: "adsdasd",
-        problem: "dasdas",
-        username: "asdasd",
-        lastChat:
-          "LoremIpsum dasdasdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
-      },
-    ];
+async function Page() {
+  const services = await GetAllService();  
   return (
-    <section>
-      <div className="max-w-2xl mx-auto flex justify-center">
-        <ChatCard chats={chatData} />
+    <section className="w-full p-8">
+      <h2 className="text-3xl font-medium text-black py-8">LIST Message</h2>
+      <div className="max-w-3xl">
+        <ChatCard chats={services} />
       </div>
     </section>
   );
 }
 
-export default page;
+export default Page;
